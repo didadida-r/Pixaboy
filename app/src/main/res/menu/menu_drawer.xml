@@ -5,31 +5,40 @@
         <item
             android:id="@+id/nav_home"
             android:icon="@mipmap/ic_apps_white_24dp"
+            android:checked="true"
             android:title="Home" />
+        <item
+            android:id="@+id/nav_favorite"
+            android:icon="@mipmap/ic_apps_white_24dp"
+            android:title="Favorite" />
+        <item
+            android:id="@+id/nav_theme"
+            android:icon="@mipmap/ic_apps_white_24dp"
+            android:title="Theme" />
     </group>
     <item android:title="Categories">
         <menu>
             <group android:id="@+id/Categories">
                 <item
                     android:id="@+id/cat_city"
-                    android:icon="@mipmap/ic_apps_white_24dp"
+                    android:icon="@mipmap/building"
                     android:title="City" />
                 <item
                     android:id="@+id/cat_food"
-                    android:icon="@mipmap/ic_apps_white_24dp"
-                    android:title="Art" />
+                    android:icon="@mipmap/food"
+                    android:title="Food" />
                 <item
                     android:id="@+id/cat_scene"
-                    android:icon="@mipmap/ic_apps_white_24dp"
+                    android:icon="@mipmap/scene"
                     android:title="Scene" />
                 <item
-                    android:id="@+id/cat_simple"
-                    android:icon="@mipmap/ic_apps_white_24dp"
-                    android:title="Simple" />
+                    android:id="@+id/cat_people"
+                    android:icon="@mipmap/people"
+                    android:title="People" />
                 <item
-                    android:id="@+id/cat_beauty"
-                    android:icon="@mipmap/ic_apps_white_24dp"
-                    android:title="Beauty" />
+                    android:id="@+id/cat_technology"
+                    android:icon="@mipmap/technology"
+                    android:title="Technology" />
             </group>
         </menu>
     </item>

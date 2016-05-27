@@ -28,5 +28,5 @@ dependencies {
     compile 'com.baoyz.pullrefreshlayout:library:1.2.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.yalantis:contextmenu:1.0.6'
-    compile 'jp.wasabeef:recyclerview-animators:1.3.0'
+    compile 'com.yalantis:phoenix:1.2.3'
 }

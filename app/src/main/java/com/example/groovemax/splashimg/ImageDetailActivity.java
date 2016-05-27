@@ -1,5 +1,6 @@
 package com.example.groovemax.splashimg;
 
+import android.database.Cursor;
 import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentManager;
@@ -25,6 +26,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 
+import com.example.groovemax.splashimg.SQLite.DataBaseHelper;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 import com.yalantis.contextmenu.lib.ContextMenuDialogFragment;
@@ -39,7 +41,7 @@ import java.util.List;
 
 
 /**
- * Created by 60546 on 5/11/2016.
+ *
  */
 public class ImageDetailActivity extends AppCompatActivity implements OnMenuItemClickListener {
 
@@ -51,6 +53,7 @@ public class ImageDetailActivity extends AppCompatActivity implements OnMenuItem
     private FragmentManager fragmentManager;
     private Bundle bundle;
     private Intent serviceIntent;
+    private DataBaseHelper helper;
 
     private String imageUrl;    //the imageUrl to display (*,1280)
     private String imageUrlHD;  //the imageUrl to display (*,1920)
@@ -99,11 +102,15 @@ public class ImageDetailActivity extends AppCompatActivity implements OnMenuItem
         MenuObject downloadHD = new MenuObject("download HD image");
         downloadHD.setResource(R.mipmap.ic_arrow_back_white_24dp);
 
+        MenuObject addFavorite = new MenuObject("add Favorites");
+        addFavorite.setResource(R.mipmap.ic_arrow_back_white_24dp);
+
         List<MenuObject> menuObjects = new ArrayList<>();
         menuObjects.add(close);
         menuObjects.add(setWall);
         menuObjects.add(download);
         menuObjects.add(downloadHD);
+        menuObjects.add(addFavorite);
 
         MenuParams menuParams = new MenuParams();
         menuParams.setActionBarSize(150);
@@ -161,30 +168,26 @@ public class ImageDetailActivity extends AppCompatActivity implements OnMenuItem
                 serviceIntent.putExtras(bundle);
                 startService(serviceIntent);
                 break;
+            case 4:
+                /** Add Favorite Image */
+                helper = new DataBaseHelper(getApplicationContext(), "FavoriteSQ", 1);
+                Cursor cursor = helper.getReadableDatabase().rawQuery("select * from image_table where "
+                        + "imageUrl=?", new String[]{imageUrl});
+                if(cursor.moveToFirst()){
+                    Toast.makeText(this, "already added in Favorites", Toast.LENGTH_SHORT).show();
+                    cursor.close();
+                    return;
+                }
+                cursor.close();
+
+                helper.getReadableDatabase().execSQL("insert into image_table values(NULL, ?, ?, ?)",
+                        new String[]{title, imageUrl, imageUrlHD});
+                helper.close();
+
             default:
                 break;
         }
     }
-
-    /*
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_image_detail, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.context_menu:
-                //fragmentManager = getSupportFragmentManager();
-                //mMenuDialogFragment.show(fragmentManager, "ContextMenuDialogFragment");
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-    */
 
     /*
          * Do not use anonymous callback

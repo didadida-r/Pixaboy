@@ -1,7 +1,7 @@
-package com.example.groovemax.splashimg.Provider;
+package com.example.groovemax.splashimg.MaterialList;
 
 import android.view.View;
-import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.dexafree.materialList.card.Card;
 import com.dexafree.materialList.card.CardProvider;
@@ -12,25 +12,26 @@ import com.example.groovemax.splashimg.R;
  */
 public class MyCardProvider extends CardProvider<MyCardProvider> {
 
-    private int Drawable;
+    private String title;
 
     @Override
     public int getLayout() {
         return R.layout.card_layout;
     }
 
-    public MyCardProvider setShadowImage(int drawable){
-        this.Drawable = drawable;
+    public MyCardProvider setImageTitle(String title){
+        this.title = title;
         notifyDataSetChanged();
         return this;
     }
+
 
     @Override
     public void render(View view, Card card) {
         super.render(view, card);
 
-        LinearLayout shadowImage = (LinearLayout) view.findViewById(R.id.shadowImage);
-        shadowImage.setBackgroundColor(Drawable);
+        TextView textView = (TextView) view.findViewById(R.id.title);
+        textView.setText(title);
 
     }
 

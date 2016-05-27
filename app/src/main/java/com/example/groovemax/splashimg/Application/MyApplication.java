@@ -29,7 +29,6 @@ public class MyApplication extends Application{
 
     }
 
-
     public static ThreadPoolManager getThreadPoolManager(){
         return threadPoolManager;
     }

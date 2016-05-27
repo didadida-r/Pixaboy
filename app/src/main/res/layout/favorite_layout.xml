@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/backgroundLayout"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <!-- popupTheme 表示菜单弹出的样式 -->
@@ -9,22 +10,14 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        android:background="#ffffff"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:theme="@style/ThemeOverlay.AppCompat.ActionBar"/>
 
-
-    <!-- The Main Content com.baoyz.widget.PullRefreshLayout -->
-    <com.yalantis.phoenix.PullToRefreshView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/swipeRefreshLayout"
-        android:layout_below="@+id/toolbar">
-
-        <com.dexafree.materialList.view.MaterialListView
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:id="@+id/materialListView" />
-
-    </com.yalantis.phoenix.PullToRefreshView>
+    <com.dexafree.materialList.view.MaterialListView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/materialListView"
+        android:layout_below="@+id/toolbar"/>
 
 </RelativeLayout>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.dexafree.materialList.card.CardLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MainLayout">
+
+    <!-- style="@style/Material_Card_View" -->
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/cardView"
+        card_view:cardCornerRadius="@dimen/card_corner_radius"
+        card_view:cardElevation="@dimen/card_elevation"
+        android:background="#ffffff">
+
+        <ImageView android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/image"
+            android:contentDescription="@null"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"/>
+
+    </android.support.v7.widget.CardView>
+
+</com.dexafree.materialList.card.CardLayout>
